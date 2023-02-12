@@ -11,11 +11,39 @@ Pada bab ini, akan dijelaskan tentang latar belakang dan permasalahan yang disel
 %-----------------------------------------------------------------------------%
 \todo{Tentukan latar belakang dari penelitian Anda di sini (\f{background}).}
 
+
+INSW (Indonesia \textit{National Single Window})adalah sistem yang akan melakukan integrasi informasi berkaitan dengan proses penanganan dokumen kepabeanan dan pengeluaran barang, yang menjamin keamanan data dan informasi serta memadukan alur dan proses informasi antar sistem internal secara otomatis. Tugas utama INSW antara lain:
+\begin{enumerate}
+  \item Penyampaian data dan informasi secara tunggal (\textit{single submission});
+  \item Pemrosesan data dan informasi secara tunggal dan tersinkronisasi (\textit{single and synchronous processing}); dan 
+  \item Pembuatan keputusan secara tunggal untuk pemberian izin kepabeanan dan pengeluaran barang (\textit{single decision-making}).
+\end{enumerate}
+
+Pemanfaatan teknologi sangat dibutuhkan untuk memenuhi berbagai kebutuhan INSW. Teknologi \textit{blockchain} dapat memenuhi kebutuhan INSW antara lain:
+\begin{enumerate}
+  \item Menjamin integritas data untuk membangun kepercayaan antara K/L, para pelaku usaha, importir, eksportir, PPJK, \textit{shipping line} dan mitra usaha luar negeri.
+  \item Meningkatkan \textit{trust, security, transparency, traceability} terhadap data yang tersebar dalam jaringan \textit{blockchain} dengan arsitektur desentralisasi.
+  \item Menjalankan logika bisnis yang terverifikasi dan disetujui oleh seluruh anggota jaringan \textit{blockchain} dengan memanfaatkan \textit{smart contract}.
+\end{enumerate}
+
+Penggunaan teknologi blockchain dapat mengeliminasi terjadinya pemalsuan dokumen yg melibatkan pada manajemen data, manajemen armada,
+perdagangan, sertifikasi, dan pelacakan pengiriman barang. Hal ini meningkatkan efisiensi transaksi dan meningkatkan kepercayaan pihak otoritas
+dan kelompok-kelompok yang terlibat dalam ekosistem pelabuhan. Hyperledger Fabric dan Besu merupakan platform blockchain yang cocok
+diimplementasi pada ekosistem pelabuhan. Dengan menghilangkan pembuatan dan pengiriman dokumen secara manual, teknologi blockchain dapat
+mengurangi waktu tanggap pada container.
+
+Hyperledger Fabric merupakan proyek \textit{open-source permissioned blockchain} yang mengatasi permasalahan-permasalahan pada implementasi
+\textit{permissioned blockchain} sebelumnya seperti \textit{confidentiality} karena mengharuskan validasi dilakukan pada semua peer. Hyperledger Fabric
+mengatasi hal ini dengan hanya mengeksekusi \textit{smart contract} pada \textit{trusted peers} dan mempropagasistate ke semua peer. Dalam hal ini dokumen-dokumen \textit{delivery order} hanya akan dapat diakses atau dibaca oleh aktor yang terlibat sehingga kerahasiaan dokumen tetap terjaga pada proses \textit{delivery order}.
+
 %-----------------------------------------------------------------------------%
 \section{Permasalahan}
 \label{sec:masalah}
 %-----------------------------------------------------------------------------%
 \todo{Sebutkan permasalahan penelitian Anda dari latar belakang tersebut.}
+
+Dalam implementasi sistem NSW berbasis \textit{blockchain} perlu pemahaman mengenai sistem dan fitur \textit{blockchain} yang akan digunakan, yang dalam kasus ini adalah Hyperledger Fabric. Penulis menganalisis fitur-fitur pada Hyperledger Fabric dengan mengutilisasi Hyperledger Fabric SDK untuk mengimplementasi proses \textit{delivery order} pada NSW. 
+
 
 %-----------------------------------------------------------------------------%
 \subsection{Definisi Permasalahan}
@@ -23,8 +51,10 @@ Pada bab ini, akan dijelaskan tentang latar belakang dan permasalahan yang disel
 %-----------------------------------------------------------------------------%
 Berikut ini adalah rumusan permasalahan dari penelitian yang dilakukan:
 \begin{itemize}
-	\item Bagaimana cara membuat pertanyaan penelitian?
+	\item Apa saja fitur-fitur pada Hyperledger Fabric yang dapat mengoptimalkan proses \textit{Delivery Order}?
+	\item Bagaimana cara mengimplementasi fitur-fitur utama pada proses \textit{Delivery Order} dengan menggunakan Hyperledger Fabric SDK?
 \end{itemize}
+
 \todo{Tuliskan permasalahan yang ingin diselesaikan. Bisa juga berbentuk pertanyaan}
 
 
@@ -34,7 +64,11 @@ Berikut ini adalah rumusan permasalahan dari penelitian yang dilakukan:
 %-----------------------------------------------------------------------------%
 Berikut ini adalah asumsi yang digunakan sebagai batasan penelitian ini:
 \begin{itemize}
-	\item Salah satu batasannya adalah, ini hanya \f{template}.
+	\item Pembuatan aplikasi berfokus pada implementasi fitur-fitur Hyperledger Fabric sehingga tidak mengutamakan aspek \textit{user interface} dan \textit{user experience}.
+	\item Implementasi blockchain pada proses permohonan \textit{Delivery Ordeer} hanya pada penyerahan
+dokumen, tidak untuk keseluruhan sistem.
+	\item \textit{Smart contract} yang digunakan diasumsikan disetujui oleh seluruh anggota jaringan \textit{blockchain}.
+
 \end{itemize}
 \todo{Umumnya ada asumsi atau batasan yang digunakan untuk menjawab pertanyaan-pertanyaan penelitian diatas.}
 
@@ -45,7 +79,9 @@ Berikut ini adalah asumsi yang digunakan sebagai batasan penelitian ini:
 %-----------------------------------------------------------------------------%
 Berikut ini adalah tujuan penelitian yang dilakukan:
 \begin{itemize}
-	\item Untuk memberikan \f{template} yang dapat mempermudah skripsi orang lain.
+	\item Mengetahui fitur-fitur Hyperledger Fabric yang dapat digunakan untuk mengoptimalkan proses \textit{Delivery Order}.
+	\item Mengimplementasi fitur \textit{Delivery Order} menggunakan Hyperledger Fabric SDK.
+
 \end{itemize}
 \todo{Tuliskan tujuan penelitian Anda di bagian ini.}
 
@@ -70,12 +106,22 @@ Berikut ini adalah tujuan penelitian yang dilakukan:
 \section{Langkah Penelitian}
 \label{sec:langkahPenelitian}
 %-----------------------------------------------------------------------------%
-Berikut ini adalah langkah penelitian yang telah dilakukan:
+\pic~\ref{fig:metode} berikut adalah langkah penelitian yang telah dilakukan:
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{assets/pics/metode}
+	\caption{Langkah penelitian.}
+	\label{fig:metode}
+\end{figure}
+
 \begin{enumerate}
-	\item Tinjauan literatur \\
-	Pada tahap ini, dipelajari teori-teori yang terkait dengan penelitian ini untuk mendapatkan konsep dasar yang dibutuhkan dalam mencapai tujuan penelitian.
-	\item Analisis implementasi dan kesimpulan \\
-	Pada tahap ini, digunakan studi kasus untuk analisis terkait kegunaan \f{template}. Setelah melakukan analisis tersebut, ditarik kesimpulan keseluruhan dari penelitian ini.
+	\item Perumusan masalah. Penulis merumuskan masalah yang berasal dari permasalahan proses \textit{delivery order} pada sistem Nasional \textit{Single Window} saat ini dan literatur-literatur terkait. Perumusan masalah ini akan menghasilkan pertanyaan penelitian.
+	\item Studi literatur. Penulis melakukan pencarian atas penelitian terkait dengan pertanyaan penelitian, dimana penulis melakukan \textit{compare, contrast, criticize, synthesize, dan summarize} atas literatur-literatur terkait sehingga membentuk suatu landasan teori yang dapat menjadi pendukung penelitian.
+	\item Perancangan dan implementasi sistem. Dilakukan perancangan arsitektur dan pengembangan sistem aplikasi yang mencakup pengembangan aplikasi web, Hyperledger Fabric SDK, dan jaringan \textit{blockchain} Hyperledger Fabric.
+	\item Evaluasi sistem. Akan dilakukan pengujian sistem untuk menjalankan test case untuk proses \textit{Delivery Order} yang diimplementasi menggunakan blockchain.
+	\item Penarikan kesimpulan atas hasil evaluasi. Hasil evaluasi akan dikaitkan dengan pertanyaan penelitian yang dirumuskan sebelumnya.
+
 \end{enumerate}
 
 
@@ -90,11 +136,11 @@ Sistematika penulisan laporan adalah sebagai berikut:
 	\item Bab 2 \babDua \\
 	    Bab ini mencakup pemaparan terminologi dan teori yang terkait dengan penelitian berdasarkan hasil tinjauan pustaka yang telah digunakan, sekaligus memperlihatkan kaitan teori dengan penelitian.
 	\item Bab 3 \babTiga \\
-	    Apa itu Bab 3?
+	    Bab ini mencakup metode atau langkah-langkah penelitian yang dilakukan. 
 	\item Bab 4 \babEmpat \\
-		Apa itu Bab 4?
+		Bab ini menjelaskan desain aplikasi dan menjelaskan secara rinci implementasi aplikasi yang dibuat.
 	\item Bab 5 \babLima \\
-	    Apa itu Bab 5?
+	    Bab ini membahas hasil aplikasi yang telah dibuat. Hasil aplikasi akan dikaitkan dengan definisi masalah yang telah dibuat sebelumnya.
 	\item Bab 6 \kesimpulan \\
 	    Bab ini mencakup kesimpulan akhir penelitian dan saran untuk pengembangan berikutnya.
 \end{itemize}
