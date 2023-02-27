@@ -139,13 +139,13 @@
 % Format sitasi, uncomment salah satu jenis untuk menggunakan jenis tersebut.
 % Anda bisa menambahkan dukungan untuk format sitasi lainnya jika diperlukan.
 %% APA (sitasi dalam dan luar paragraf).
-\usepackage[natbibapa]{apacite}
-\bibliographystyle{apacite}
+%  \usepackage[natbibapa]{apacite}
+%  \bibliographystyle{apacite}
 %% IEEE
-% \usepackage{natbib}
-% \bibliographystyle{IEEEtran}
-%% ACM
-% \bibliographystyle{acm}
+\usepackage[numbers]{natbib} 
+\bibliographystyle{IEEEtranN} 
+% ACM
+%\bibliographystyle{acm}
 %% MLA (unduh berkas mla.bst dari https://www.ctan.org/tex-archive/biblio/bibtex/contrib/mla/mla.bst
 %%      ke direktori _internals)
 % \usepackage{natbib}
@@ -330,13 +330,13 @@
 
 % Konfigurasi khusus sitasi APA (hapus jika Anda menggunakan format sitasi
 % selain APA)
-\AtBeginDocument{
-	\renewcommand{\refname}{\bibname}
-	\renewcommand{\BBAA}{\&}
-	\renewcommand{\BBAB}{dan}
-	\renewcommand{\BRetrievedFrom}{Diakses dari }
-	\renewcommand{\BRetrieved}[1]{Diakses pada tanggal {#1}, dari\ }
-}
+% \AtBeginDocument{
+% 	\renewcommand{\refname}{\bibname}
+% 	\renewcommand{\BBAA}{\&}
+% 	\renewcommand{\BBAB}{dan}
+% 	\renewcommand{\BRetrievedFrom}{Diakses dari }
+% 	\renewcommand{\BRetrieved}[1]{Diakses pada tanggal {#1}, dari\ }
+% }
 \AtBeginDocument{
     \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
     \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}

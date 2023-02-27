@@ -2,76 +2,43 @@
 \chapter{\babSatu}
 \label{bab:1}
 %-----------------------------------------------------------------------------%
-Pada bab ini, akan dijelaskan tentang latar belakang dan permasalahan yang diselesaikan pada penelitian ini.
 
+Pada bab ini dijelaskan latar belakang penelitian, rumusan masalah, tujuan penelitian, dan sistematika penulisan laporan. Latar belakang mencakup masalah-masalah yang ada pada waktu penulisan laporan ini. Kemudian, rumusan masalah mencakup masalah yang ingin diselesaikan dalam penelitian ini, yang ingin diselesaikan sebagai tujuan penelitian. Terakhir, dijelaskan sistematika dan struktur penulisan pada laporan penelitian ini.
 
 %-----------------------------------------------------------------------------%
 \section{Latar Belakang}
 \label{sec:latarBelakang}
 %-----------------------------------------------------------------------------%
-\todo{Tentukan latar belakang dari penelitian Anda di sini (\f{background}).}
 
+Ekspor dan impor merupakan kegiatan jual-beli barang antarnegara. Proses permohonan ekspor dan impor barang memerlukan persetujuan dari berbagai pihak seperti pemerintah dan jasa logistik. Dokumen permohonan ekspor maupun impor (\textit{delivery order}) perlu diketahui dan disetujui oleh semua pihak yang terlibat. Kegiatan ekspor dan impor di Indonesia didukung oleh sistem \textit{single window} yang dinamakan INSW.
 
-INSW (Indonesia \textit{National Single Window})adalah sistem yang akan melakukan integrasi informasi berkaitan dengan proses penanganan dokumen kepabeanan dan pengeluaran barang, yang menjamin keamanan data dan informasi serta memadukan alur dan proses informasi antar sistem internal secara otomatis. Tugas utama INSW antara lain:
-\begin{enumerate}
-  \item Penyampaian data dan informasi secara tunggal (\textit{single submission});
-  \item Pemrosesan data dan informasi secara tunggal dan tersinkronisasi (\textit{single and synchronous processing}); dan 
-  \item Pembuatan keputusan secara tunggal untuk pemberian izin kepabeanan dan pengeluaran barang (\textit{single decision-making}).
-\end{enumerate}
+INSW (Indonesia \textit{National Single Window}) adalah sistem yang melakukan integrasi informasi berkaitan dengan proses penanganan dokumen kepabeanan dan pengeluaran barang, yang menjamin keamanan data dan informasi serta memadukan alur dan proses informasi antar sistem internal secara otomatis. Tugas utama INSW antara lain adalah menyampaikan data dan informasi secara tunggal, pemrosesan data secara tunggal dan tersinkronisasi, dan pembuatan keputusan secara tunggal untuk memberikan izin kepabeanan dan pengeluaran barang. Seluruh pihak yang terlibat (pelaku usaha, pemerintah, pihak logistik, dll.) cukup menggunakan satu sistem ini untuk memproses dokumen permohonan \textit{delivery order}.
 
-Pemanfaatan teknologi sangat dibutuhkan untuk memenuhi berbagai kebutuhan INSW. Teknologi \textit{blockchain} dapat memenuhi kebutuhan INSW antara lain:
-\begin{enumerate}
-  \item Menjamin integritas data untuk membangun kepercayaan antara K/L, para pelaku usaha, importir, eksportir, PPJK, \textit{shipping line} dan mitra usaha luar negeri.
-  \item Meningkatkan \textit{trust, security, transparency, traceability} terhadap data yang tersebar dalam jaringan \textit{blockchain} dengan arsitektur desentralisasi.
-  \item Menjalankan logika bisnis yang terverifikasi dan disetujui oleh seluruh anggota jaringan \textit{blockchain} dengan memanfaatkan \textit{smart contract}.
-\end{enumerate}
+Saat ini sistem INSW tersentralisasi pada satu tempat. Hal ini menimbulkan beberapa permasalahan seperti ketergantungan terhadap sistem. Jika sistem terjadi kegagalan maka seluruh proses bisnis yang berjalan akan terganggu. Permasalahan selanjutnya adalah integritas data. Pemilik sistem dapat mengubah data pada sistem tanpa pemberitahuan maupun persetujuan pihak-pihak lain yang menggunakan sistem ini sehingga hal ini menurunkan tingkat kepercayaan para pengguna. Permasalahan lain adalah keamanan di mana jika sistem mengalami pelanggaran keamanan maka semua pihak akan terkena dampaknya karena data hanya disimpan pada satu tempat.
 
-Penggunaan teknologi blockchain dapat mengeliminasi terjadinya pemalsuan dokumen yg melibatkan pada manajemen data, manajemen armada,
-perdagangan, sertifikasi, dan pelacakan pengiriman barang. Hal ini meningkatkan efisiensi transaksi dan meningkatkan kepercayaan pihak otoritas
-dan kelompok-kelompok yang terlibat dalam ekosistem pelabuhan. Hyperledger Fabric dan Besu merupakan platform blockchain yang cocok
-diimplementasi pada ekosistem pelabuhan. Dengan menghilangkan pembuatan dan pengiriman dokumen secara manual, teknologi blockchain dapat
-mengurangi waktu tanggap pada container.
+Pemanfaatan teknologi \textit{blockchain} dapat memenuhi berbagai kebutuhan INSW antara lain menjamin integritas data dan meningkatkan kepercayaann, keamanan, transparansi, dan keterlacakan. Hal ini dibutuhkan untuk meningkatkan kepercayaan antara K/L, para pelaku usaha, importir, eksportir, PPJK, \textit{shipping line} dan mitra usaha luar negeri. \textit{Blockchain} memiliki arsitektur desentralisasi sehingga data tersebar dalam jaringan serta memiliki fitur bawaan \textit{anti-temperance} yang mengakibatkan data menjadi \textit{immutable}. Fitur lain pada \textit{blockchain} adalah \textit{smart contract} yang dapat menjalankan logika bisnis yang terverifikasi dan disetujui oleh seluruh anggota jaringan \textit{blockchain}.
 
-Hyperledger Fabric merupakan proyek \textit{open-source permissioned blockchain} yang mengatasi permasalahan-permasalahan pada implementasi
-\textit{permissioned blockchain} sebelumnya seperti \textit{confidentiality} karena mengharuskan validasi dilakukan pada semua peer. Hyperledger Fabric
-mengatasi hal ini dengan hanya mengeksekusi \textit{smart contract} pada \textit{trusted peers} dan mempropagasistate ke semua peer. Dalam hal ini dokumen-dokumen \textit{delivery order} hanya akan dapat diakses atau dibaca oleh aktor yang terlibat sehingga kerahasiaan dokumen tetap terjaga pada proses \textit{delivery order}.
+Penggunaan teknologi blockchain dapat mengeliminasi terjadinya pemalsuan dokumen yg melibatkan pada manajemen data, manajemen armada, perdagangan, sertifikasi, dan pelacakan pengiriman barang. Hal ini meningkatkan efisiensi transaksi dan meningkatkan kepercayaan pihak otoritas dan kelompok-kelompok yang terlibat dalam ekosistem pelabuhan. Dengan menghilangkan pembuatan, pengiriman, dan verifikasi dokumen secara manual, teknologi blockchain juga dapat mengurangi waktu tanggap pada \textit{container} \citep{Ahmad2021}.
+
+Penelitian ini berfokus optimisasi proses bisnis permohonan ekspor dan impor barang (\textit{delivery order}). Proses permohonan dan verifikasi dokumen \textit{delivery order} diganti dengan aplikasi berbasis \textit{blockchain} menggunakan \textit{smart contract}. Teknologi \textit{blockchain} yang digunakan untuk aplikasi ini adalah Hyperledger Fabric. Fabric adalah salah satu proyek Hyperledger sebagai \textit{framework} pengembangan aplikasi \textit{enterprise} dengan arsitektur modular. Fabric ditujukan sebagai sistem berbasis komponen dengan fitur-fitur yang \textit{pluggable} seperti konsensus dan layanan \textit{membership} untuk peran \textit{user} berbeda \cite{Dhillon2017}. Fabric juga mengatasi masalah \textit{confidentiality} dengan hanya mengeksekusi \textit{smart contract} pada \textit{trusted peers} kemudian baru melakukan propagasi \textit{state} ke semua \textit{peer} \cite{Androulaki2018}. 
 
 %-----------------------------------------------------------------------------%
-\section{Permasalahan}
+\section{Rumusan Masalah}
 \label{sec:masalah}
 %-----------------------------------------------------------------------------%
-\todo{Sebutkan permasalahan penelitian Anda dari latar belakang tersebut.}
 
-Dalam implementasi sistem NSW berbasis \textit{blockchain} perlu pemahaman mengenai sistem dan fitur \textit{blockchain} yang akan digunakan, yang dalam kasus ini adalah Hyperledger Fabric. Penulis menganalisis fitur-fitur pada Hyperledger Fabric dengan mengutilisasi Hyperledger Fabric SDK untuk mengimplementasi proses \textit{delivery order} pada NSW. 
-
+Cakupan penelitian ini adalah penggunaan Hyperledger Fabric pada proses \textit{delivery order}. Cakupan-cakupan tersebut antara lain fitur-fitur Hyperledger Fabric, cara implementasi Hyperledger Fabric, dan keunggulan sistem INSW berbasis \textit{blockchain} dengan sistem INSW yang sudah ada. Pertanyaan penelitian dirumuskan pada subsubbab \ref{sec:pertanyaanPenelitian}.
 
 %-----------------------------------------------------------------------------%
-\subsection{Definisi Permasalahan}
-\label{sec:definisiMasalah}
+\subsection{Pertanyan Penelitian}
+\label{sec:pertanyaanPenelitian}
 %-----------------------------------------------------------------------------%
-Berikut ini adalah rumusan permasalahan dari penelitian yang dilakukan:
+
 \begin{itemize}
 	\item Apa saja fitur-fitur pada Hyperledger Fabric yang dapat mengoptimalkan proses \textit{Delivery Order}?
 	\item Bagaimana cara mengimplementasi fitur-fitur utama pada proses \textit{Delivery Order} dengan menggunakan Hyperledger Fabric SDK?
+	\item Sejauh mana keunggulan sistem INSW berbasis \textit{blockchain} dengan sistem INSW yang sudah ada (tanpa berbasis \textit{blockchain})?
 \end{itemize}
-
-\todo{Tuliskan permasalahan yang ingin diselesaikan. Bisa juga berbentuk pertanyaan}
-
-
-%-----------------------------------------------------------------------------%
-\subsection{Batasan Permasalahan}
-\label{sec:batasanMasalah}
-%-----------------------------------------------------------------------------%
-Berikut ini adalah asumsi yang digunakan sebagai batasan penelitian ini:
-\begin{itemize}
-	\item Pembuatan aplikasi berfokus pada implementasi fitur-fitur Hyperledger Fabric sehingga tidak mengutamakan aspek \textit{user interface} dan \textit{user experience}.
-	\item Implementasi blockchain pada proses permohonan \textit{Delivery Ordeer} hanya pada penyerahan
-dokumen, tidak untuk keseluruhan sistem.
-	\item \textit{Smart contract} yang digunakan diasumsikan disetujui oleh seluruh anggota jaringan \textit{blockchain}.
-
-\end{itemize}
-\todo{Umumnya ada asumsi atau batasan yang digunakan untuk menjawab pertanyaan-pertanyaan penelitian diatas.}
-
 
 %-----------------------------------------------------------------------------%
 \section{Tujuan Penelitian}
@@ -81,48 +48,21 @@ Berikut ini adalah tujuan penelitian yang dilakukan:
 \begin{itemize}
 	\item Mengetahui fitur-fitur Hyperledger Fabric yang dapat digunakan untuk mengoptimalkan proses \textit{Delivery Order}.
 	\item Mengimplementasi fitur \textit{Delivery Order} menggunakan Hyperledger Fabric SDK.
+	\item Mengetahui keunggulan sistem INSW berbasis \textit{blockchain} dengan sistem INSW yang sudah ada (tanpa berbasis \textit{blockchain}).
+\end{itemize}
+
+
+%-----------------------------------------------------------------------------%
+\subsection{Batasan Permasalahan}
+\label{sec:batasanMasalah}
+%-----------------------------------------------------------------------------%
+Berikut ini adalah asumsi yang digunakan sebagai batasan penelitian ini:
+\begin{itemize}
+	\item Pembuatan aplikasi berfokus pada implementasi fitur-fitur Hyperledger Fabric sehingga tidak mengutamakan aspek \textit{user interface} dan \textit{user experience}.
+	\item Implementasi blockchain hanya pada \textit{use case} permohonan dan rilis \textit{Delivery Order} tidak untuk keseluruhan sistem.
+	\item \textit{Smart contract} yang digunakan disetujui oleh seluruh anggota jaringan \textit{blockchain}.
 
 \end{itemize}
-\todo{Tuliskan tujuan penelitian Anda di bagian ini.}
-
-
-%-----------------------------------------------------------------------------%
-\section{Posisi Penelitian}
-\label{sec:posisiPenelitian}
-%-----------------------------------------------------------------------------%
-\todo{Sebutkan posisi penelitian Anda. Ada baiknya jika Anda menggunakan gambar atau diagram. Template ini telah menyediakan contoh cara memasukkan gambar.}
-
-\begin{figure}
-	\centering
-	\includegraphics[width=0.4\textwidth]{assets/pics/makara.png}
-	\caption{Penjelasan singkat terkait gambar.}
-	\label{fig:research_position}
-\end{figure}
-
-\todo{Jelaskan \pic~\ref{fig:research_position} di sini.}
-
-
-%-----------------------------------------------------------------------------%
-\section{Langkah Penelitian}
-\label{sec:langkahPenelitian}
-%-----------------------------------------------------------------------------%
-\pic~\ref{fig:metode} berikut adalah langkah penelitian yang telah dilakukan:
-
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{assets/pics/metode}
-	\caption{Langkah penelitian.}
-	\label{fig:metode}
-\end{figure}
-
-\begin{enumerate}
-	\item Perumusan masalah. Penulis merumuskan masalah yang berasal dari permasalahan proses \textit{delivery order} pada sistem Nasional \textit{Single Window} saat ini dan literatur-literatur terkait. Perumusan masalah ini akan menghasilkan pertanyaan penelitian.
-	\item Studi literatur. Penulis melakukan pencarian atas penelitian terkait dengan pertanyaan penelitian, dimana penulis melakukan \textit{compare, contrast, criticize, synthesize, dan summarize} atas literatur-literatur terkait sehingga membentuk suatu landasan teori yang dapat menjadi pendukung penelitian.
-	\item Perancangan dan implementasi sistem. Dilakukan perancangan arsitektur dan pengembangan sistem aplikasi yang mencakup pengembangan aplikasi web, Hyperledger Fabric SDK, dan jaringan \textit{blockchain} Hyperledger Fabric.
-	\item Evaluasi sistem. Akan dilakukan pengujian sistem untuk menjalankan test case untuk proses \textit{Delivery Order} yang diimplementasi menggunakan blockchain.
-	\item Penarikan kesimpulan atas hasil evaluasi. Hasil evaluasi akan dikaitkan dengan pertanyaan penelitian yang dirumuskan sebelumnya.
-
-\end{enumerate}
 
 
 %-----------------------------------------------------------------------------%
@@ -144,5 +84,3 @@ Sistematika penulisan laporan adalah sebagai berikut:
 	\item Bab 6 \kesimpulan \\
 	    Bab ini mencakup kesimpulan akhir penelitian dan saran untuk pengembangan berikutnya.
 \end{itemize}
-
-\todo{Anda bisa mengubah atau menambahkan penjelasan singkat mengenai isi masing-masing bab. Setiap tugas akhir pasti ada yang berbeda pada bagian ini.}
