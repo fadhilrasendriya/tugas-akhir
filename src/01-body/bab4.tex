@@ -2,85 +2,124 @@
 \chapter{\babEmpat}
 \label{bab:4}
 %-----------------------------------------------------------------------------%
-Bab ini menjelaskan tentang struktur dari \f{template} tugas akhir ini.
-Dengan memahami struktur \f{template}, pekerjaan Anda akan menjadi lebih terarah karena Anda tahu di mana Anda harus melakukan sesuatu.
+Bab ini membahas desain dan implementasi sistem dalam penelitian ini. Pembahasan
+dilakukan mulai dari proses permohonan ekspor dan impor barang, rancangan arsitektur sistem secara umum, rancangan infrastruktur sistem, dan rancangan arsitektur \textit{blockchain}. Dilanjutkan dengan pembahasan simulasi blockchain, dan desain evaluasi dari sistem INSW yang dikembangkan.
 
-\todo{Sejatinya bab ini digunakan untuk membahas inti dari penelitian Anda. Sesuaikan saja dengan kebutuhkan Anda: misalkan bab empat Anda adalah penjelasan terkait implementasi sistem.}
+\section{Proses Permohonan Ekspor dan Impor Barang}
+\label{sec:proses_do}
+Proses permohonan dimulai dari pengguna akhir membuat permohonan melalui perusahaan eksportir dan importir. Perusahaan tersebut kemudian yang mengajukan permohonan ekspor/impor barang ke sistem INSW. Permohonan ini akan dilakukan pengecekan terhadap aturan-aturan yang ada terhadap barang-barang yang akan diekspor atau diimpor.
 
+Proses permohonan dapat dilihat pada gambar ...
 
-%-----------------------------------------------------------------------------%
-\section{\code{thesis.tex}}
-\label{sec:thesis-tex}
-%-----------------------------------------------------------------------------%
-Berkas \code{thesis.tex} berisi seluruh berkas Latex yang dibaca, jadi bisa dikatakan sebagai berkas utama.
-Dari berkas ini kita dapat mengatur bab apa saja yang ingin kita tampilkan dalam dokumen.
+\section{Rancangan Sistem \textit{Blockchain}}
+\label{sec:rancangansistem}
 
+Komponen-komponen dalam jaringan Fabric antara lain \textit{organization}, \textit{channel}, MSP, CA, \textit{peer}, \textit{orderer} dan \textit{chaincode}. Rancangan arsitektur Fabric dijelaskan pada bagian selanjutnya.
 
-%-----------------------------------------------------------------------------%
-\section{Direktori \code{config}}
-\label{sec:config-dir}
-%-----------------------------------------------------------------------------%
-Direktori \code{config} berisi berkas-berkas yang menyimpan konfigurasi variabel dan istilah-istilah yang bisa dimodifikasi sesuai dengan kebutuhan tugas akhir.
+\subsection{\textit{Channel}}
+\label{subsec:channel}
 
-%-----------------------------------------------------------------------------%
-\subsection{\code{settings.tex}}
-\label{sec:settings-tex}
-%-----------------------------------------------------------------------------%
-Berkas \code{settings.tex} berguna untuk mempermudah pembuatan beberapa template standar.
-Anda diminta untuk menuliskan judul laporan, nama, NPM, dan hal-hal lain yang dibutuhkan untuk pembuatan template.
+\textit{Channel} merupakan grup kumpulan organisasi-organisasi dalam jaringan fabric yang terlibat pada aplikasi. \textit{Channel} dianalogikan seperti sebuah \textit{subnet} dalam jaringan, dan secara efektif berfungsi sebagai isolasi data dari organisasi lain yang bukan anggota dalam sistem ini namun masih terhubung dalam jaringan Fabric. Sistem INSW dirancang menggunakan satu \textit{channel} dengan nama "singlewindow" karena organisasi-organisasi yang terlibat akan mengakses semua data yang dirancang pada sistem ini. Konfigurasi \textit{channel} didefinisikan pada \textit{file} bernama configtx.yaml.
 
+\subsection{Organizations}
+\label{subsec:organization}
 
-%-----------------------------------------------------------------------------%
-\subsection{\code{istilah.tex}}
-\label{sec:istilah-tex}
-%-----------------------------------------------------------------------------%
-Berkas \code{istilah.tex} digunakan untuk mencatat istilah-istilah yang digunakan.
-Fungsinya hanya untuk memudahkan penulisan.
-Pada beberapa kasus, ada kata-kata yang harus selalu muncul dengan tercetak miring atau tercetak tebal.
-Dengan menjadikan kata-kata tersebut sebagai sebuah perintah \latex~tentu akan mempercepat dan mempermudah pengerjaan laporan.
+Selanjutnya dibahas komponen \textit{organization}. \textit{Organizations} merupakan representasi kelompok-kelompok yang menjadi anggota suatu \textit{channel}. Dalam kasus ini \textit{organizations} merepresentasikan perusahaan-perusahaan. Dalam penelitian ini digunakan dua 3 organisasi yaitu example.com, singlewindow.example.com, dan tradingcompany1.example.com. Setiap organisasi berkontribusi ke jaringan Fabric dengan menyumbang \textit{peer}. Organisasi example.com merupakan organisasi dalam jaringan Fabric yang bertugas menjadi \textit{orderer} untuk melaksanakan konsensus. Organisasi selanjutnya adalah singlewindow.example.com yang merepresentasikan perusahaan INSW yang bertugas sebagai administrator \textit{channel}. Singlewindow memiliki wewenang untuk mengatur, membuat, dan mengubah aturan terhadap barang ekspor dan impor. Organisasi tradingcompany1.example.com merepresentasikan perusahaan eksportir dan importir yang bergabung dalam jaringan \textit{blockchain}. Pengajuan permohonan ekspor dan impor barang dilakukan melalui organisasi ini (perusahaan eksportir dan importir). Definisi organizations dapat dilihat pada Kode \ref{lst:configtx-orgs} yang merupakan bagian dari configtx.yaml
 
-%-----------------------------------------------------------------------------%
-\subsection{\code{references.bib}}
-\label{sec:references-bib}
-%-----------------------------------------------------------------------------%
-Berkas \code{references.bib} berisi seluruh daftar referensi yang digunakan dalam
-laporan.
-Anda bisa membuat model daftar referensi lain dengan menggunakan BibTeX. Untuk menambahkan referensi dengan format BibTeX, Anda bisa mengisi berkas \code{references.bib}.
-Untuk mempelajari bibtex lebih lanjut, silahkan buka \url{http://www.bibtex.org/Format}.
-Untuk merujuk pada salah satu referensi yang ada, gunakan perintah \bslash cite, e.g. \bslash cite\{book:sample\} yang akan akan memunculkan \cite{book:sample}.
-
-%--------------------------------	---------------------------------------------%
-\section{Direktori \code{\_internals}}
-\label{sec:internals}
-%-----------------------------------------------------------------------------%
-Direktori \code{\_internals} berisi halaman-halaman dan \f{styling} yang tidak perlu diubah untuk penggunaan normal dari template ini. \f{Styling} bisa diubah jika diperlukan untuk menyesuaikan beberapa fitur template dengan kebutuhan tugas akhir, atau untuk menyesuaikan dengan aturan terbaru yang dirilis oleh Universitas Indonesia.
-
-%-----------------------------------------------------------------------------%
-\subsection{\code{hype.indonesia.tex}}
-\label{sec:hype-indonesia-tex}
-%-----------------------------------------------------------------------------%
-Berkas \code{hype.indonesia.tex} berisi cara pemenggalan beberapa kata dalam bahasa Indonesia.
-\latex~memiliki algoritma untuk memenggal kata-kata sendiri, namun untuk beberapa kasus algoritma ini memenggal dengan cara yang salah.
-Untuk memperbaiki pemenggalan yang salah inilah cara pemenggalan yang benar ditulis dalam berkas \f{hype.indonesia.tex}.
+\lstinputlisting[label={lst:configtx-orgs}, caption={Konfigurasi organisasi}]{assets/codes/configtx_organization.yaml}
 
 
-%-----------------------------------------------------------------------------%
-\subsection{\code{uithesis.sty}}
-\label{sec:uithesis.sty}
-%-----------------------------------------------------------------------------%
-%Berkas \code{uithesis.sty} berisi konfigurasi inti dari \f{layoutting} untuk \f{template} ini.
-Secara umum, Anda tidak perlu mengubah apapun pada berkas ini.
-Akan tetapi, untuk kasus-kasus lanjutan, seperti menambahkan daftar konten \f{custom} atau menyalakan dukungan terhadap \f{multi-language}, Anda bisa mengubahnya secara langsung pada \code{uithesis.sty}.
-Jika Anda memiliki feedback maupun ingin berkontribusi terhadap perbaikan \f{layout}, selama ke arah yang sesuai dengan ketentuan Peraturan Rektor UI terkait format Tugas Akhir, Anda bisa mengubah berkas ini dan berkas lainnya yang terkait lalu membuat Merge Request di repositori.
-Keterangan lebih lanjut terkait cara kontribusi dapat dilihat di berkas \code{README.md} dan \code{CONTRIBUTING}.
+\subsection{\textit{Peer} dan \textit{Orderer}}
+\label{subsec:peer-orderer}
+
+Komponen selanjutnya yang dibahas adalah \textit{peer}. \textit{Peer} merupakan komponen penting tempat \textit{ledger} disimpan dan sebagai tempat eksekusi \textit{smart contract}. Dalam Hyperledger Fabric terdapat dua jenis \textit{peer}: \textit{orderer} dan normal. \textit{Orderer} adalah jenis \textit{peer} yang bertugas melakukan pengurutan terhadap semua \textit{event} yang terjadi pada \textit{channel}. \textit{Orderer} dalam Fabric menggunakan algoritma konsensus Raft. Sebelumnya, terdapat tiga pilihan algoritma konsensus pada \textit{orderer} yaitu Solo, untuk \textit{orderer singular}, Kafka, dan Raft. Namun, konsensus Solo dan Kafka ditandai sebagai \textit{deprecated} untuk versi 2 ke atas sehingga digunakan konsensus Raft dalam penelitian ini. Selain itu, tipe konsensus Raft sudah tersedia secara \textit{native} dalam \textit{source code orderer} sehingga tidak membutuhkan \textit{setup} ekstra seperti halnya konsensus Kafka serta penggunaan Raft memungkinkannya untuk setiap organisasi berkontribusi menjadi \textit{orderer}.
+
+Untuk pengaturan organisasi, setiap organisasi dibuatkan satu \textit{peer} dengan rincian sebagai berikut: orderer.example.com untuk \textit{peer} orderer, peer0.singlewindow.example.com untuk \textit{peer} milik organisasi singlewindow, dan peer0.tradingcompany1.example.com untuk \textit{peer} milik organisasi tradingcompany1. Dalam rancangan ini hanya digunakan satu organisasi untuk \textit{orderer} untuk eksperimen.
+
+Konfigurasi \textit{orderer} dapat dilihat pada Kode \ref{lst:configtx-orderers}. 
+
+\lstinputlisting[label={lst:configtx-orderers}, caption={Konfigurasi orderer}]{assets/codes/configtx_orderer.yaml}
+
+\subsubsection{\textit{Anchor Peer} dan \textit{Gossip Protocol}}
+\label{subsubsec:anchor-peer}
+Selain untuk \textit{peer} \textit{orderer}, \textit{peer} dapat dijadikan \textit{anchor peer} untuk menjadi \textit{endpoint} untuk \textit{peer} lain untuk menerapkan \textit{gossip protocol}. \textit{Anchor peer} dijadikan sebagai titik \textit{redundancy} ketika terjadi masalah koneksi antara \textit{peer} ke \textit{orderer}. \textit{Anchor peer} dan \textit{orderer} dijadikan sebagai titik komunikasi antar-\textit{peer} menggunakan \textit{gossip protocol}. \textit{Peer} peer0.singlewindow.example.com dijadikan sebagai \textit{anchor peer} dalam penelitian ini. 
+
+\subsection{\textit{Chaincode} dan \textit{Smart Contracts}}
+\label{subsec:chaincode}
+Aplikasi \textit{blockchain} diimplementasikan menggunakan satu \textit{chaincode} bernama do\_chaincode dengan dua \textit{smart contract}: GoodContract dan OrderContract. \textit{GoodContract} mengatur daftar barang dan batas-batas yang diperbolehkan untuk diimpor atau diekspor. Sedangkan OrderContract berisi fungsi untuk membaca dan membuat \textit{delivery order}. \textit{Chaincode} dibuat menggunakan \textit{library} fabric-contract-api-go/contractapi. Fungsi-fungsi pada do\_chaincode yang dibuat dapat dilihat pada tabel \ref{table:smartcontract}. 
+
+\begin{center}
+\begin{tabular}{ |c|c|c|c| } 
+ \hline
+ \textit{\textbf{Smart Contract}} & \textbf{Fungsi} & \textbf{Deskripsi} & \textbf{Pengakses} \\ 
+ \hline
+ GoodContract & CreateGood & Melakukan pembuatan \textit{good} (barang) & organisasi INSW \\ 
+ \hline
+ GoodContract & GetGoodById & Membaca \textit{good} yang ada & anggota \textit{channel} \\ 
+ \hline
+ OrderContract & CreateOrder & Membuat \textit{delivery order} & INSW dan perusahaan \\
+ \hline
+ OrderContract & ReadOrder & Membaca \textit{delivery order} & anggota \textit{channel} \\
+ \hline
+\end{tabular}
+\caption{Tabel Fungsi \textit{Smart Contract}}
+\label{table:smartcontract}
+\end{center}
+
+\subsection{Fabric CA Server dan Cryptogen}
+\label{subsec:fabric-ca}
+Fabric CA Server merupakan aplikasi CA server untuk membuat \textit{credential} berupa \textit{certificate, ca}, dan \textit{private key} untuk suatu organisasi. CA dibutuhkan Fabric sebagai identitas pada anggota \textit{blockchain} karena Fabric merupakan \textit{permissioned blockchain} yang hanya anggota tertentu yang diizinkan untuk bergabung ke jaringan. Untuk kebutuhan \textit{testing}, terdapat \textit{tool} bernama Cryptogen untuk membuat semua \textit{credential} yang dibutuhkan untuk tiap organisasi yang didefinisikan melalui suatu \textit{file config}. Dalam penelitian ini tidak digunakan Fabric CA Server melainkan menggunakan Cryptogen sebagai pembuat identitas karena hanya digunakan untuk keperluan simulasi, tidak untuk lingkungan \textit{production}. \textit{Config} Cryptogen untuk membuat identitas dapat dilihat pada \textit{file} \ref{lst:cryptogen} 
+
+\lstinputlisting[label={lst:cryptogen}, caption={Konfigurasi cryptogen}]{assets/codes/cryptogen.yaml}
+
+\subsection{\textit{Deployment}}
+\label{subsec:deployment}
+Infrastruktur \textit{blockchain} di-\textit{deploy} menggunakan Docker pada \textit{host machine} Apple Macbook Pro 2021 dengan \textit{chip} Apple M1 Pro dan \textit{Memory} 16 Gb. \textit{File compose} untuk \textit{deployment} Fabric dapat dilihat pada \textit{file} \ref{lst:compose}.
+
+\lstinputlisting[label={lst:compose}, caption={Konfigurasi \textit{compose}}]{assets/codes/compose.yaml}
+
+\section{Rancangan Simulasi}
+\label{sec:simulation}
+Pengujian sistem dan \textit{smart contract} dilakukan dengan sebuah simulator. Simulator dirancang sebagai program untuk memanggil \textit{smart contract} yang dibuat. Simulator dibuat dalam bahasa pemrograman Go menggunakan \textit{library} fabric-gateway/pkg/client dan grpc. Rincian kasus uji simulator adalah sebagai berikut.
+
+\subsection{Inisialisasi \textit{Fabric Gateway Client}}
+Untuk berkomunikasi dengan jaringan \textit{fabric} perlu dilakukan inisialisasi \textit{client} terlebih dahulu. Pertama program perlu menginisiasi koneksi \textit{gRPC} ke \textit{peer} dengan menyertakan sertifikat TLS, kemudian membuat \textit{identity} dan \textit{sign}. Selanjutnya membuat sebuah \textit{gateway connection} yang disediakan oleh \textit{library} fabric-gateway/pkg/client di atas koneksi \textit{gRPC} yang telah dibuat dengan menyertakan \textit{evaluate timeout, endorse timeout, submit timeout,} dan \textit{commit timeout}. Langkah terakhir adalah mengambil objek \textit{smart contract} dari \textit{gateway connection} yang telah dibuat dengan memanggil metode \textbf{GetContractWithName()} dengan parameter nama \textit{chaincode} dan nama \textit{smart contract}, yang dalam kasus ini perlu mengambil dua objek \textit{smart contract} GoodContract dan OrderContract. 
+
+Terdapat dua cara untuk memanggil fungsi pada \textit{smart contract} yaitu memanggil metode \textbf{SubmitTransaction()} dan \textbf{EvaluateTransaction()}. \textbf{SubmitTransaction()} digunakan untuk melakukan operasi yang mengubah data dalam \textit{world state} (\textit{unsafe operation}) dan transaksi dicatat dalam blok. Sedangkan metode \textbf{EvaluateTransaction()} digunakan untuk membaca data dari \textit{world state} yang telah ter-commit (\textit{safe operation} dan pemanggilan \textit{chaincode} hanya dilakukan secara lokal sehingga tidak melibatkan \textit{peer} lain dan \textit{orderer}.
+
+Ketika metode \textbf{SubmitTransaction()} dipanggil, Pemanggilan fungsi dipropagasi ke semua \textit{endorsing peer} untuk dieksekusi \textit{chaincodenya} pada masing-masing \textit{endorsing peer}. Setelah mencapai kesepakatan (tidak terbatas pada mayoritas, diatur saat pengaturan \textit{channel}), transaksi dikirim ke \textit{orderer} untuk dibuatkan blok. Setelah blok dibuat blok akan dikirim ke semua \textit{peer}.
+
+Untuk kasus uji simulasi \textit{request} \textit{concurrent}, akan diuji dengan \textit{client} yang diatur dengan \textit{timeout} dan tanpa \textit{timeout}. Durasi \textit{timeout} yang digunakan adalah angka \textit{default} dari \textit{repo} fabric-samples.
+
+\subsection{Inisialisasi Barang}
+\label{subsec:init-good}
+Simulasi dimulai dengan membuat daftar barang yang diperbolehkan untuk ekspor maupun impor. Sepuluh barang dibuat dengan memanggil fungsi CreateGood dari \textit{smart contract} GoodContract sebanyak sepuluh kali. \textit{Field} \textit{unit, importLimit}, dan \textit{exportLimit} dibuat serupa untuk mensimplifikasi inisialisasi barang. Langkah inisialisasi dapat dilihat pada potongan kode \ref{lst:initgood}.
+
+\lstinputlisting[label={lst:initgood}, caption={Inisialisasi \textit{Good}}]{assets/codes/initgood.go}
+
+Untuk melihat data barang yang telah dibuat, simulator mengambil data barang yang telah dibuat pada \ref{subsec:init-good} dengan memanggil fungsi \textit{chaincode} \textbf{GetGoodById()}. Simulasi membaca barang dapat dilihat pada fungsi \ref{lst:readgood}.
+
+\lstinputlisting[label={lst:readgood}, caption={Membaca \textit{good} yang telah dibuat}]{assets/codes/readgood.go}
+
+\subsection{Membuat \textit{Order}}
+Setelah daftar barang dibuat, simulasi selanjutnya adalah membuat \textit{order}. \textit{Order} dibuat menggunakan identitas tradingcompany1 untuk mensimulasi sebuah perusahaan yang membuat \textit{delivery order}. Terdapat dua kasus dalam membuat \textit{order}. Yang pertama adalah pembuatan \textit{order} dengan barang yang memenuhi syarat batas impor atau ekspor. Kasus kedua adalah pembuatan \textit{order} dengan barang yang melebihi batas impor atau ekspor. Simulasi pembuatan \textit{order} yang memenuhi syarat terhadap daftar barang yang dikirim dapat dilihat pada fungsi \ref{lst:createorder}. Sedangkan simulasi pembuatan \textit{order} dengan barang yang melebihi kapasitas dapat dilihat pada fungsi \ref{lst:createorderlimit}.
+
+\lstinputlisting[label={lst:createorder}, caption={Membuat \textit{order} sesuai dengan aturan barang}]{assets/codes/createorder.go}
+
+\lstinputlisting[label={lst:createorderlimit}, caption={Membuat \textit{order} dengan barang yang melebihi batas}]{assets/codes/createorderlimit.go}
+
+\subsection{Membuat Barang Dengan Identitas Yang Tidak Terotorisasi}
+Kasus simulasi selanjutnya adalah mencoba membuat barang menggunakan identitas selain milik organisasi singlewindow.example.com. Kasus ini dimaksudkan untuk menguji \textit{access control} pada \textit{smart contract} GoodContract. Simulasi kasus ini dapat dilihat pada fungsi \ref{lst:creategoodunauthorized}.
+
+\lstinputlisting[label={lst:creategoodunauthorized}, caption={Membuat \textit{good} menggunakan identitas yang tidak terotorisasi}]{assets/codes/creategoodunauthorized.go}
+
+\subsection{Membuat \textit{Order} secara bersamaan}
+Selanjutnya, untuk menguji \textit{performance} dan mencari \textit{upper bound} dari \textit{request} yang bersamaan, simulator melakukan pembuatan \textit{order} secara \textit{concurrent}. Pengujian ini dilakukan dengan dua konfigurasi \textit{client} yang berbeda. Yang pertama adalah konfigurasi \textit{client} tanpa batas waktu \textit{timeout} untuk menguji ketahanan sistem dalam melayani \textit{request}. Konfigurasi yang kedua adalah konfigurasi \textit{client} dengan \textit{timeout} berikut: \textit{evaluate timeout} 5 detik, \textit{endorse timeout} 15 detik, \textit{submit timeout} 5 detik, dan \textit{commit timeout} 1 menit. Angka tersebut merupakan angka yang diambil dari konfigurasi \textit{client} pada \textit{repo} fabric-samples. Untuk kasus uji dengan \textit{timeout}, jumlah \textit{request} ditingkatkan secara inkremental yaitu 9, 10, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, dan 10000. Sedangkan untuk kasus tanpa \textit{timeout}, jumlah \textit{request} secara meningkat adalah 9, 10, 100, 1000, 10000, dan 100000. Untuk setiap iterasi dicatat waktu eksekusi dan jumlah transaksi yang gagal. Simulasi untuk kasus ini dapat dilihat pada fungsi \ref{lst:concurrentorder}.
+
+\lstinputlisting[label={lst:concurrentorder}, caption={Membuat \textit{order} secara bersamaan}]{assets/codes/concurrentorder.go}
 
 
-%-----------------------------------------------------------------------------%
-\section{Direktori \code{src/01-body}}
-\label{sec:bab-tex}
-%-----------------------------------------------------------------------------%
-Direktori ini berisi isi laporan yang Anda tulis.
-Setiap nama berkas e.g. bab1.tex merepresentasikan bab dimana tulisan tersebut akan muncul.
-Sebagai contoh, kode dimana tulisan ini dibaut berada dalam berkas dengan nama \code{bab4.tex}.
-Ada enam buah berkas yang telah disiapkan untuk mengakomodir enam bab dari laporan Anda, diluar bab kesimpulan dan saran.
-Jika Anda tidak membutuhkan sebanyak itu, silahkan hapus kode dalam berkas \code{thesis.tex} yang memasukan berkas \latex~yang tidak dibutuhkan; contohnya perintah \code{\bslash{}include\{bab6.tex\}} merupakan kode untuk memasukan berkas \code{bab6.tex} kedalam laporan.
+
+
+
+

@@ -1,0 +1,54 @@
+Organizations:
+  - &OrdererOrg
+    Name: OrdererOrg
+    ID: OrdererMSP
+    MSPDir: ../organizations/ordererOrganizations/example.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('OrdererMSP.member')"
+      Writers:
+        Type: Signature
+        Rule: "OR('OrdererMSP.member')"
+      Admins:
+        Type: Signature
+        Rule: "OR('OrdererMSP.admin')"
+    OrdererEndpoints:
+      - orderer.example.com:7050
+
+  - &Org1
+    Name: SingleWindowMSP
+    ID: SingleWindowMSP
+    MSPDir: ../organizations/peerOrganizations/singlewindow.example.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('SingleWindowMSP.admin', 'SingleWindowMSP.peer', 'SingleWindowMSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('SingleWindowMSP.admin', 'SingleWindowMSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('SingleWindowMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('SingleWindowMSP.peer')"
+
+  - &Org2
+    Name: TradingCompany1MSP
+    ID: TradingCompany1MSP
+    MSPDir: ../organizations/peerOrganizations/tradingcompany1.example.com/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('TradingCompany1MSP.admin', 'TradingCompany1MSP.peer', 'TradingCompany1MSP.client')"
+      Writers:
+        Type: Signature
+        Rule: "OR('TradingCompany1MSP.admin', 'TradingCompany1MSP.client')"
+      Admins:
+        Type: Signature
+        Rule: "OR('TradingCompany1MSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('TradingCompany1MSP.peer')"
+
