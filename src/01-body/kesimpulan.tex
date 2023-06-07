@@ -2,30 +2,22 @@
 \chapter{\kesimpulan}
 \label{bab:6}
 %---------------------------------------------------------------
-Pada bab ini, Penulis akan memaparkan kesimpulan penelitian dan saran untuk penelitian berikutnya.
+Pada bab ini, dijelaskan kesimpulan atas penelitian sistem \textit{delivery order} berbasis \textit{blockchain} Hyperledger Fabric. Terdapat juga saran untuk pengembang dan serta saran untuk penelitian selanjutnya.
 
 
 %---------------------------------------------------------------
 \section{Kesimpulan}
 \label{sec:kesimpulan}
 %---------------------------------------------------------------
-Berikut ini adalah kesimpulan terkait pekerjaan yang dilakukan dalam penelitian ini:
-\begin{enumerate}
-	\item \bo{Poin pertama} \\
-	Penjelasan poin pertama.
-	\item \bo{Poin kedua} \\
-	Penjelasan poin kedua.
-\end{enumerate}
 
-Tulis kalimat penutup di sini.
+Fitur \textit{delivery order} pada sistem INSW berbasis \textit{blockchain} Hyperledger Fabric dapat diimplementasi dengan \textit{library} fabric-contract-api untuk implementasi \textit{smart contract} dan fabric-gatewat sebagai \textit{frontend} dan \textit{client} untuk mengakses \textit{smart contract}. \textit{Library fabric-contract-api} memiliki antarmuka fungsi untuk membaca dan menyimpan data dari dan ke \textit{ledger}. Fitur membaca data pada \textit{library} ini (GetState()) dimanfaatkan pada logika pembuatan \textit{delivery order} pada \textit{smart contract} untuk verifikasi daftar barang sekaligus melakukan \textit{approval} yang mewakilkan pihak INSW dan pihak logistik secara otomatis. Selain itu, sistem mampu menangani hingga 2000 \textit{request} di waktu yang bersamaan. Oleh karena itu, fitur \textit{delivery order} dapat dioptimisasi dengan fitur-fitur pada \textit{library fabric-contract-api}.
 
+Sementara untuk cara mengimplementasi proses \textit{delivery order} menggunakan bantuan Hyperledger Fabric SDK adalah, melengkapi yang telah disebutkan di paragraf sebelumnya, dengan membuat dua tipe penyimpanan data yaitu data barang dan data \textit{delivery order}. Verifikasi daftar barang yang akan dikirim dalam \textit{delivery order} dilakukan dengan membaca data barang-barang menggunakan fungsi GetState()  untuk diverifikasi batasnya dengan kuantitas yang ingin dikirim. Setelah semua terverifikasi dan sah, data \textit{delivery order} disimpan ke \textit{ledger} dengan fungsi PutState() sekaligus menandakan bahwa \textit{deliery order} telah berhasil dibuat.
+
+Keunggulan sistem INSW berbasis \textit{blockchain} dengan sistem INSW yang sudah ada adalah tidak dibutuhkannya lagi verifikator manusia dalam pembuatan \textit{delivery order}. Dengan memindahkan proses verifikasi manual menjadi otomatis dengan \textit{smart contract}, potensi penyuapan atau \textit{bribery} namun tetap diterima dan disetujui oleh anggota \textit{blockchain} karena mayoritas harus menyetujui sebuah \textit{smart contract} sebelum \textit{smart contract} tersebut dapat digunakan dalam sistem \textit{blockchain} serta meningkatnya kecepatan transaksi hingga 2000 transaksi bersamaan.
 
 %---------------------------------------------------------------
 \section{Saran}
 \label{sec:saran}
 %---------------------------------------------------------------
-Berdasarkan hasil penelitian ini, berikut ini adalah saran untuk pengembangan penelitian berikutnya:
-\begin{enumerate}
-	\item Saran 1.
-	\item Saran 2.
-\end{enumerate}
+Berdasarkan hasil penelitian ini, terdapat saran untuk pengembang dan untuk penelitian selanjutnya. Dikarenakan sistem memiliki celah serangan \textit{spam} yang dapat mengakibatkan sistem \textit{denial-of-service}, saran pertama yaitu perlu diimplementasikannya \textit{rate limiting} untuk membatasi jumlah \textit{request} yang bisa diajukan oleh \textit{client}. Selain itu dapat diimplementasikan sebuah \textit{captcha} untuk mengurangi peluang serangan dari \textit{bot}. Saran kedua yaitu dalam pengimplementasian sistem untuk lingkungan \textit{production} untuk menambah jumlah \textit{peer} dan \textit{orderer} karena dapat meningkatkan \textit{robustness} dan menghilangkan \textit{single-point-of-failure}.

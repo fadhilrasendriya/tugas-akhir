@@ -28,6 +28,8 @@ Selanjutnya dibahas komponen \textit{organization}. \textit{Organizations} merup
 
 \lstinputlisting[label={lst:configtx-orgs}, caption={Konfigurasi organisasi}]{assets/codes/configtx_organization.yaml}
 
+\subsection{\textit{Endorsement Policy}}
+\textit{Endorsement policy} adalah aturan yang perlu dicapai untuk memvalidasi sebuah transaksi. Organisasi menyetujui \textit{endorsement policy} ketika melakukan \textit{approve} pada \textit{chaincode} yang akan digunakan. Dalam penelitian ini digunakan \textit{endorsement policy} mayoritas dan didefinisikan dalam \textit{channel} agar \textit{endorsement policy} secara otomatis diperbarui ketika organisasi bergabung maupun meninggalkan \textit{channel}.
 
 \subsection{\textit{Peer} dan \textit{Orderer}}
 \label{subsec:peer-orderer}
@@ -49,6 +51,7 @@ Selain untuk \textit{peer} \textit{orderer}, \textit{peer} dapat dijadikan \text
 Aplikasi \textit{blockchain} diimplementasikan menggunakan satu \textit{chaincode} bernama do\_chaincode dengan dua \textit{smart contract}: GoodContract dan OrderContract. \textit{GoodContract} mengatur daftar barang dan batas-batas yang diperbolehkan untuk diimpor atau diekspor. Sedangkan OrderContract berisi fungsi untuk membaca dan membuat \textit{delivery order}. \textit{Chaincode} dibuat menggunakan \textit{library} fabric-contract-api-go/contractapi. Fungsi-fungsi pada do\_chaincode yang dibuat dapat dilihat pada tabel \ref{table:smartcontract}. 
 
 \begin{center}
+\begin{table}
 \begin{tabular}{ |c|c|c|c| } 
  \hline
  \textit{\textbf{Smart Contract}} & \textbf{Fungsi} & \textbf{Deskripsi} & \textbf{Pengakses} \\ 
@@ -64,6 +67,7 @@ Aplikasi \textit{blockchain} diimplementasikan menggunakan satu \textit{chaincod
 \end{tabular}
 \caption{Tabel Fungsi \textit{Smart Contract}}
 \label{table:smartcontract}
+\end{table}
 \end{center}
 
 \subsection{Fabric CA Server dan Cryptogen}
@@ -102,11 +106,14 @@ Untuk melihat data barang yang telah dibuat, simulator mengambil data barang yan
 \lstinputlisting[label={lst:readgood}, caption={Membaca \textit{good} yang telah dibuat}]{assets/codes/readgood.go}
 
 \subsection{Membuat \textit{Order}}
-Setelah daftar barang dibuat, simulasi selanjutnya adalah membuat \textit{order}. \textit{Order} dibuat menggunakan identitas tradingcompany1 untuk mensimulasi sebuah perusahaan yang membuat \textit{delivery order}. Terdapat dua kasus dalam membuat \textit{order}. Yang pertama adalah pembuatan \textit{order} dengan barang yang memenuhi syarat batas impor atau ekspor. Kasus kedua adalah pembuatan \textit{order} dengan barang yang melebihi batas impor atau ekspor. Simulasi pembuatan \textit{order} yang memenuhi syarat terhadap daftar barang yang dikirim dapat dilihat pada fungsi \ref{lst:createorder}. Sedangkan simulasi pembuatan \textit{order} dengan barang yang melebihi kapasitas dapat dilihat pada fungsi \ref{lst:createorderlimit}.
+Setelah daftar barang dibuat, simulasi selanjutnya adalah membuat \textit{order}. \textit{Order} dibuat menggunakan identitas tradingcompany1 untuk mensimulasi sebuah perusahaan yang membuat \textit{delivery order}. Terdapat dua kasus dalam membuat \textit{order}. Yang pertama adalah pembuatan \textit{order} dengan barang yang memenuhi syarat batas impor atau ekspor. Kasus kedua adalah pembuatan \textit{order} dengan barang yang melebihi batas impor atau ekspor. Simulasi pembuatan \textit{order} yang memenuhi syarat terhadap daftar barang yang dikirim dapat dilihat pada fungsi \ref{lst:createorder}. Sedangkan simulasi pembuatan \textit{order} dengan barang yang melebihi kapasitas dapat dilihat pada fungsi \ref{lst:createorderlimit}. Setelah \textit{order} dibuat, simulator membaca \textit{order} dengan kode \ref{lst:readorder} berikut.
 
 \lstinputlisting[label={lst:createorder}, caption={Membuat \textit{order} sesuai dengan aturan barang}]{assets/codes/createorder.go}
 
 \lstinputlisting[label={lst:createorderlimit}, caption={Membuat \textit{order} dengan barang yang melebihi batas}]{assets/codes/createorderlimit.go}
+
+\lstinputlisting[label={lst:readorder}, caption={Membaca \textit{order}}]{assets/codes/readorder.go}
+
 
 \subsection{Membuat Barang Dengan Identitas Yang Tidak Terotorisasi}
 Kasus simulasi selanjutnya adalah mencoba membuat barang menggunakan identitas selain milik organisasi singlewindow.example.com. Kasus ini dimaksudkan untuk menguji \textit{access control} pada \textit{smart contract} GoodContract. Simulasi kasus ini dapat dilihat pada fungsi \ref{lst:creategoodunauthorized}.

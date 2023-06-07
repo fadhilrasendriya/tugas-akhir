@@ -2,3 +2,57 @@
 \chapter{\babLima}
 \label{bab:5}
 %-----------------------------------------------------------------------------%
+Pada bab ini dijelaskan hasil eksperimen yang dilakukan pada skenario simulasi pada subbab \ref{sec:simulation}. Dilakukan pembahasan dan analisis terhadap hasil pengujian berdasarkan skenario dan dihubungkan dengan aspek \textit{authentication, access control, availability} dan performa.
+
+\section{Hasil dan Analisis Fungsional \textit{Smart Contract}}
+Pada bagian ini dibahas hasil simulasi yang dilakukan pada subbab \ref{sec:simulation}. 
+
+\subsection{Pembuatan Barang}
+\label{subsec:creategood-chap5}
+Hasil simulasi pembuatan barang dapat dilihat pada log \ref{lst:creategoodlog}. Pembuatan barang dilakukan pada tahap inisialisasi barang dan log diambil pada 2 barang pertama. Dapat dilihat pada log untuk setiap barang yang dibuat transaksi dicatat dalam \textit{block} dan memakan waktu 2 detik hingga transaksi ter-\textit{commit} dalam block. Hal ini dikarenakan dalam simulator, \textit{client} melakukan SubmitTransaction untuk membuat barang dipanggil secara sinkronus dan menunggu hasil hingga transaksi ter-\textit{commit} dalam \textit{block}. 
+
+\lstinputlisting[label={lst:creategoodlog}, caption=Log pembuatan barang]{assets/logs/8_CreateGood.txt}
+
+Dapat dilihat bahwa untuk setiap pemanggilan SubmitTransaction, transaksi dipropagasi ke seluruh \textit{peer} yang terhubung dan tergabung dalam \textit{channel} singlewindow kemudian \textit{chaincode} dieksekusi pada setiap \textit{peer} untuk dilakukan \textit{endorse} transaksi. Hal ini dapat dilihat pada log peer0.tradingcompany1.example.com pada indeks \textbf{adcc} dan \textbf{add1}. Setelah mayoritas \textit{peer} selesai melakukan \textit{endorse}, transaksi dikirim ke \textit{orderer} untuk kemudian dilakukan \textit{event ordering} dan dibuatkan \textit{block}. Setelah \textit{block} selesai dibuat \textit{block} disebarkan ke seluruh peer anggota jaringan dan kemudian di-commit pada masing-masing \textit{peer}. Kemudian dapat dilihat untuk \textit{block} yang telah dibuat (\textit{block} 711 dan 712) memiliki nilai \textit{hash} yang sama di setiap \textit{peer}.
+
+\subsection{Membaca Barang}
+\label{subsec:readgoodlog}
+Untuk melihat barang yang telah ditambah sebelumnya, dilakukan pembacaan barang. Hasil dari simulasi ini dapat dilihat pada log \ref{lst:readgoodlog}. Untuk membaca data dari \textit{world state}, digunakan \textit{API} EvaluateTransaction. Berbeda dengan SubmitTransaction, pemanggilan ini bersifat lokal dan hanya membaca melalui \textit{peer} yang dituju. Dapat dilihat bahwa hanya \textit{peer} peer0.singlewindow.example.com yang menerima transaksi EvaluateTransaction dan tidak dikirim ke \textit{orderer} sehingga tidak ada \textit{block} yang dibuat.
+
+\lstinputlisting[label={lst:readgoodlog}, caption=Log pembacaan barang]{assets/logs/9_ReadGood.txt}
+
+\subsection{Membuat \textit{Order}}
+Setelah daftar barang dipastikan ada, dilakukan pembuatan dua \textit{order}. \textit{Order} pertama adalah \textit{order} dengan spesifikasi barang yang tidak melebihi batas impor maupun ekspor. Hasil pembuatan \textit{order} dapat dilihat pada log \ref{lst:createorderlog}. Terdapat log pada \textit{chaincode} yang menunjukkan alur pembuatan \textit{order}. Untuk log pada \textit{peer} dan \textit{orderer} serupa dengan log pada subbab \ref{subsec:creategood-chap5} yaitu pemanggilan \textit{chaincode}, \textit{endorse}, \textit{submit} transaksi ke \textit{orderer}, kemudian \textit{commit}. 
+
+\lstinputlisting[label={lst:createorderlog}, caption=Log pembuatan \textit{order}]{assets/logs/10_CreateOrderSuccess.txt}
+
+Pembuatan \textit{order} yang kedua adalah pembuatan \textit{order} dengan kuantitas barang yang melebihi batas yang diperbolehkan. Hasil pengujian berupa log yang dapat dilihat pada log \ref{lst:createorderfailedlog}. Pada log \textit{chaincode} dapat dilihat bahwa pembuatan gagal pada saat melakukan verifikasi terhadap kuantitas barang yang terhadap aturan pada barang tersebut. Karena transaksi tersebut mengembalikan \textit{error} transaksi tersebut tidak disebarkan ke \textit{peer} lain sehingga tidak di-endorse dan tidak dikirim ke \textit{orderer}.
+
+\lstinputlisting[label={lst:createorderfailedlog}, caption=Log pembuatan \textit{order} yang gagal]{assets/logs/12_CreateInvalidOrder.txt}
+
+\subsection{Membaca \textit{Order}}
+Untuk memasikan \textit{order} telah berhasil dibuat dilakukan pengujian dengan membaca \textit{order} yang sebelumnya dibuat. Hasil pembacaan \textit{order} dapat dilihat pada log \ref{lst:readorderlog}. Seperti halnya pada saat membaca barang pada subbab \ref{subsec:readgoodlog} yaitu menggunakan \textit{api} EvaluateTransaction() dan \textit{chaincode} dieksekusi hanya secara lokal (tidak melibatkan \textit{peer} lain.)
+
+\lstinputlisting[label={lst:readorderlog}, caption=Log pembacaan \textit{order}]{assets/logs/11_ReadCreatedOrder.txt}
+
+\section{Hasil dan Analisis Aspek \textit{Authentication}}
+Untuk melakukan analisis terhadap aspek \textit{authentication}, dilakukan pengujian dengan cara mengakses aplikasi dengan identitas dan \textit{peer} yang berbeda. Hyperledger Fabric mengharuskan untuk organisasi untuk berkomunikasi dengan \textit{blockchain} melalui \textit{peer} milik organisasi tersebut. Uji otentikasi dilakukan dengan mengatur \textit{credential client}  menggunakan identitas organisasi tradingcompany1.example.com untuk melakukan koneksi melalui \textit{peer} milik organisasi singlewindow.example.com. Dapat dilihat pada log \ref{lst:differentpeer} bahwa \textit{client} tidak terotorisasi dan ditolak untuk berkomunikasi melalui \textit{peer} milik organisasi singlewindow.example.com
+
+\lstinputlisting[label={lst:differentpeer}, caption=\textit{Request} menggunakan \textit{peer} organisasi lain]{assets/logs/16_SubmitToOtherOrganizationPeer.txt}
+
+\section{Hasil dan Analisis Aspek \textit{Access Control}}
+Selanjutnya, untuk menguji aspek \textit{access control}, dilakukan pemanggilan fungsi CreateGood() yang telah didefinisikan pada tabel \ref{table:smartcontract} menggunakan identitas milik organisasi tradingcompany.example.com, yang seharusnya hanya dapat dipanggil oleh organisasi singlewindow.example.com. Hasil pengujian ini dapat dilihat pada log \ref{lst:creategoodunauthorizedlog}. Dapat dilihat pada log bahwa pemanggilan \textit{chaincode} gagal dan mengembalikan \textit{error} sehingga INSW tetap dapat mengatur barang-barang yang diperbolehkan tanpa diubah oleh pihak tidak berwenang.
+
+\lstinputlisting[label={lst:creategoodunauthorizedlog}, caption=Membuat barang menggunakan identitas tidak terotorisasi]{assets/logs/13_CreateGoodUnauthorized.txt}
+
+\section{Hasil dan Analisis Aspek Performa dan \textit{Availability}}
+Selanjutnya, aspek performa dan \textit{availability} diuji dengan mengirim \textit{request} secara \textit{concurrent}. Hasil pengujian untuk \textit{request concurrent} tanpa timeout dapat dilihat pada log \ref{lst:concurrentnotimeout}. Dapat dilihat bahwa sistem tetap mampu melayani \textit{request} hingga 10000 namun terjadi \textit{crash} saat melayani 100000 \textit{request}. 
+
+\lstinputlisting[label={lst:concurrentnotimeout}, caption=\textit{Request concurrent} tanpa \textit{timeout client}]{assets/logs/14_ConcurrentOrderNoTimeout.txt}
+
+Sedangkan untuk hasil uji \textit{request concurrent} dengan \textit{timeout} pada \textit{client} dapat dilihat pada log \ref{lst:concurrentwithtimeout}. Dalam 5 iterasi, 4 dari 5 iterasi mengalami kegagalan pada 4000 \textit{request} ke atas dan 1 dari 5 iterasi terdapat 8 \textit{request} gagal pada 3000 \textit{request}. Untuk durasi 9 request adalah sekitar 2 detik sedangkan untuk \textit{request} hanya berdurasi rata-rata 0.14 detik. Hal ini dikarenakan dalam konfigurasi \textit{orderer}, \textit{block} akan menampung transaksi dalam \textit{batch} 10 transaksi setiap \textit{block} dengan \textit{timeout} 2 detik. Dengan kata lain pembuatan \textit{block} akan ditunda hingga 2 detik jika jumlah transaksi kurang dari 10.
+
+\lstinputlisting[label={lst:concurrentwithtimeout}, caption=\textit{Request concurrent} dengan \textit{timeout client}]{assets/logs/15_ConcurrentOrderWithNormalTimeout.txt}
+
+\subsection{Potensi Serangan \textit{Denial-of-Service}}
+Jika dibandingkan antara dua skenario untuk \textit{client} dengan \textit{timeout} dan tanpa \textit{timeout}, \textit{client} dengan timeout akan menggagalkan \textit{request} yang sedang berlangsung jika menunggu terlalu lama untuk menyelesaikan tahap-tahapan transaksi. Namun ketika \textit{client} dikonfigurasi tanpa menggunakan \textit{timeout}, sistem tetap akan melayani \textit{request} hingga selesai dibuatkan \textit{block} sehingga untuk melakukan transaksi baru harus menunggu seluruh transaksi sebelumnya selesai diproses. Hal ini menimbulkan celah serangan yang membuat sistem mengalami \textit{denial-of-service} dengan cara melakukan \textit{spam request} dengan jumlah yang sangat banyak. Untuk mengatasi hal ini dapat diterapkan \textit{rate limiting} untuk setiap \textit{client} yang menggunakan sistem ini.

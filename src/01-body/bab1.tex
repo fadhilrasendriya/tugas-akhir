@@ -14,17 +14,17 @@ Ekspor dan impor merupakan kegiatan jual-beli barang antarnegara. Proses permoho
 
 INSW (Indonesia \textit{National Single Window}) adalah sistem yang melakukan integrasi informasi berkaitan dengan proses penanganan dokumen kepabeanan dan pengeluaran barang, yang menjamin keamanan data dan informasi serta memadukan alur dan proses informasi antar sistem internal secara otomatis. Fungsi utama INSW antara lain adalah menyampaikan data dan informasi secara tunggal, pemrosesan data secara tunggal dan tersinkronisasi, dan pembuatan keputusan secara tunggal untuk memberikan izin kepabeanan dan pengeluaran barang. Seluruh pihak yang terlibat (pelaku usaha, pemerintah, pihak logistik, dll.) cukup menggunakan satu sistem ini untuk memproses dokumen permohonan \textit{delivery order}.
 
-Saat ini sistem INSW tersentralisasi pada satu tempat. Hal ini menimbulkan beberapa permasalahan seperti ketergantungan terhadap sistem. Jika sistem terjadi kegagalan maka seluruh proses bisnis yang berjalan akan terganggu. Permasalahan selanjutnya adalah integritas data. Pemilik sistem dapat mengubah data pada sistem tanpa pemberitahuan maupun persetujuan pihak-pihak lain yang menggunakan sistem ini sehingga hal ini menurunkan tingkat kepercayaan para pengguna. Permasalahan lain adalah keamanan di mana jika sistem mengalami pelanggaran keamanan, seperti halnya pada kasus kebocoran data mypertamina, maka semua pihak akan terkena dampaknya karena data hanya disimpan pada satu tempat. 
+Saat ini sistem INSW tersentralisasi pada satu tempat. Hal ini menimbulkan beberapa permasalahan salah satunya adalah ketergantungan terhadap sistem. Jika sistem terjadi kegagalan maka seluruh proses bisnis yang berjalan akan terganggu. Permasalahan selanjutnya adalah integritas data. Pemilik sistem dapat mengubah data pada sistem tanpa pemberitahuan maupun persetujuan pihak-pihak lain yang menggunakan sistem ini sehingga hal ini menurunkan tingkat kepercayaan para pengguna. Permasalahan lain adalah keamanan di mana jika sistem mengalami pelanggaran keamanan, seperti halnya pada kasus kebocoran data mypertamina \citep{Karina_2022}, maka semua pihak akan terkena dampaknya karena data hanya disimpan pada satu tempat. 
 
-Selain itu, sistem INSW tradisional saat ini masih mengandalkan verifikasi dokumen permohonan \textit{delivery order} secara manual. Dalam proses verifikasi tersebut tidak ada keterlibatan sistem yang memverifikasi isi dokumen secara otomatis yang merujuk pada aturan-aturan ekspor dan impor. Hal ini menimbulkan vektor serangan berupa pemalsuan dokumen dan penyuapan pada petugas INSW maupun perusahaan logistik. 
+Selain itu, sistem INSW saat ini masih mengandalkan verifikasi dokumen permohonan \textit{delivery order} secara manual. Dalam proses verifikasi tersebut tidak ada keterlibatan sistem yang memverifikasi isi dokumen secara otomatis yang merujuk pada aturan-aturan ekspor dan impor. Hal ini menimbulkan vektor serangan berupa pemalsuan dokumen dan penyuapan pada petugas INSW maupun perusahaan logistik. 
 
-Pemanfaatan teknologi \textit{blockchain} dapat memenuhi berbagai kebutuhan INSW antara lain menjamin integritas data dan meningkatkan kepercayaann, keamanan, transparansi, dan keterlacakan. Hal ini dibutuhkan untuk meningkatkan kepercayaan antara K/L, para pelaku usaha, importir, eksportir, PPJK, \textit{shipping line} dan mitra usaha luar negeri. \textit{Blockchain} memiliki arsitektur desentralisasi sehingga data tersebar dalam jaringan serta memiliki fitur bawaan \textit{anti-temperance} yang mengakibatkan data menjadi \textit{immutable}. 
+Pemanfaatan teknologi \textit{blockchain} dapat memenuhi berbagai kebutuhan INSW antara lain menjamin integritas data dan meningkatkan kepercayaan, keamanan, transparansi, dan keterlacakan. Hal ini dibutuhkan untuk meningkatkan kepercayaan antara K/L, para pelaku usaha, importir, eksportir, PPJK, \textit{shipping line} dan mitra usaha luar negeri. \textit{Blockchain} memiliki arsitektur desentralisasi sehingga data tersebar dalam jaringan serta memiliki fitur bawaan \textit{anti-temperance} yang mengakibatkan data menjadi \textit{immutable}. 
 
 \textit{Blockchain} memiliki fitur \textit{smart contract} untuk menjalankan logika bisnis yang terverifikasi dan disetujui oleh seluruh anggota jaringan \textit{blockchain}. Penggunaan \textit{smart contract} dapat dimanfaatkan untuk melakukan verifikasi dokumen \textit{delivery order} secara otomatis yang merujuk pada aturan-aturan ekspor impor. Dengan menggunakan \textit{smart contract} sebagai verifikator dokumen, proses permohonan \textit{delivery order} menjadi transparan dan menutup vektor serangan seperti pemalsuan dokumen dan penyuapan karena tidak melibatkan proses manual oleh manusia. Selain itu, dengan mengotomatisasi verifikasi dokumen performa dan \textit{throughput} akan meningkat karena menghilangkan \textit{bottleneck} pada proses manual.
 
 Penggunaan teknologi blockchain dapat mengeliminasi terjadinya pemalsuan dokumen yg melibatkan pada manajemen data, manajemen armada, perdagangan, sertifikasi, dan pelacakan pengiriman barang. Hal ini meningkatkan efisiensi transaksi dan meningkatkan kepercayaan pihak otoritas dan kelompok-kelompok yang terlibat dalam ekosistem pelabuhan. Dengan menghilangkan pembuatan, pengiriman, dan verifikasi dokumen secara manual, teknologi blockchain juga dapat mengurangi waktu tanggap pada \textit{container} \citep{Ahmad2021}.
 
-Penelitian ini berfokus optimisasi proses bisnis permohonan ekspor dan impor barang (\textit{delivery order}) untuk menggantikan proses verifikasi dokumen manual. Proses permohonan dan verifikasi dokumen \textit{delivery order} digantikan dengan aplikasi berbasis \textit{blockchain} menggunakan \textit{smart contract}. Teknologi \textit{blockchain} yang digunakan untuk aplikasi ini adalah Hyperledger Fabric. 
+Penelitian ini berupa simulator permohonan ekspor dan impor barang (\textit{delivery order}) berbasis \textit{blockchain}. Proses permohonan dan verifikasi dokumen \textit{delivery order} secara manual digantikan dengan \textit{smart contract}. Teknologi \textit{blockchain} yang digunakan adalah Hyperledger Fabric. 
 
 Fabric adalah salah satu proyek Hyperledger sebagai \textit{framework} pengembangan aplikasi \textit{enterprise} dengan arsitektur modular. Fabric ditujukan sebagai sistem berbasis komponen dengan fitur-fitur yang \textit{pluggable} seperti konsensus dan layanan \textit{membership} untuk peran \textit{user} berbeda \cite{Dhillon2017}. Fabric juga mengatasi masalah \textit{confidentiality} dengan hanya mengeksekusi \textit{smart contract} pada \textit{trusted peers} kemudian baru melakukan propagasi \textit{state} ke semua \textit{peer} \cite{Androulaki2018}. 
 
@@ -40,23 +40,24 @@ INSW memiliki potensi vektor serangan dalam proses verifikasi dokumen \textit{de
 \subsection{Pertanyan Penelitian}
 \label{sec:pertanyaanPenelitian}
 %-----------------------------------------------------------------------------%
+Berikut adalah pertanyaan penelitian yang diangkat dari latar belakang permasalahan yang ada:
+\begin{enumerate}
 
-\begin{itemize}
 	\item Apa saja fitur-fitur pada Hyperledger Fabric yang dapat mengoptimalkan proses \textit{Delivery Order}?
 	\item Bagaimana cara mengimplementasi fitur-fitur utama pada proses \textit{Delivery Order} dengan menggunakan Hyperledger Fabric SDK?
 	\item Sejauh mana keunggulan sistem INSW berbasis \textit{blockchain} dengan sistem INSW yang sudah ada (tanpa berbasis \textit{blockchain})?
-\end{itemize}
+\end{enumerate}
 
 %-----------------------------------------------------------------------------%
 \subsection{Tujuan Penelitian}
 \label{sec:tujuan}
 %-----------------------------------------------------------------------------%
 Berikut ini adalah tujuan penelitian yang dilakukan:
-\begin{itemize}
+\begin{enumerate}
 	\item Mengetahui fitur-fitur Hyperledger Fabric yang dapat digunakan untuk mengoptimalkan proses \textit{Delivery Order}.
 	\item Mengimplementasi fitur \textit{Delivery Order} menggunakan Hyperledger Fabric SDK.
 	\item Mengetahui keunggulan sistem INSW berbasis \textit{blockchain} dengan sistem INSW yang sudah ada (tanpa berbasis \textit{blockchain}).
-\end{itemize}
+\end{enumerate}
 
 
 %-----------------------------------------------------------------------------%
@@ -64,12 +65,12 @@ Berikut ini adalah tujuan penelitian yang dilakukan:
 \label{sec:batasanMasalah}
 %-----------------------------------------------------------------------------%
 Berikut ini adalah asumsi yang digunakan sebagai batasan penelitian ini:
-\begin{itemize}
-	\item Pembuatan aplikasi berfokus pada implementasi fitur-fitur Hyperledger Fabric sehingga tidak mengutamakan aspek \textit{user interface} dan \textit{user experience}.
+\begin{enumerate}
+	\item Penelitian berupa implementasi \textit{smart contract} dan simulator sehingga tidak dibuat prototipe untuk diakses.
 	\item Implementasi blockchain hanya pada \textit{use case} permohonan dan rilis \textit{Delivery Order} tidak untuk keseluruhan sistem.
 	\item \textit{Smart contract} yang digunakan disetujui oleh seluruh anggota jaringan \textit{blockchain}.
 
-\end{itemize}
+\end{enumerate}
 
 
 %-----------------------------------------------------------------------------%
@@ -77,7 +78,7 @@ Berikut ini adalah asumsi yang digunakan sebagai batasan penelitian ini:
 \label{sec:sistematikaPenulisan}
 %-----------------------------------------------------------------------------%
 Sistematika penulisan laporan adalah sebagai berikut:
-\begin{itemize}
+\begin{enumerate}
 	\item Bab 1 \babSatu \\
 	    Bab ini mencakup latar belakang, cakupan penelitian, dan pendefinisian masalah.
 	\item Bab 2 \babDua \\
@@ -90,4 +91,4 @@ Sistematika penulisan laporan adalah sebagai berikut:
 	    Bab ini membahas hasil aplikasi yang telah dibuat. Hasil aplikasi akan dikaitkan dengan definisi masalah yang telah dibuat sebelumnya.
 	\item Bab 6 \kesimpulan \\
 	    Bab ini mencakup kesimpulan akhir penelitian dan saran untuk pengembangan berikutnya.
-\end{itemize}
+\end{enumerate}
