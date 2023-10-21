@@ -20,20 +20,22 @@ Selain itu, sistem INSW saat ini masih mengandalkan verifikasi dokumen permohona
 
 Pemanfaatan teknologi \textit{blockchain} dapat memenuhi berbagai kebutuhan INSW antara lain menjamin integritas data dan meningkatkan kepercayaan, keamanan, transparansi, dan keterlacakan. Hal ini dibutuhkan untuk meningkatkan kepercayaan antara K/L, para pelaku usaha, importir, eksportir, PPJK, \textit{shipping line} dan mitra usaha luar negeri. \textit{Blockchain} memiliki arsitektur desentralisasi sehingga data tersebar dalam jaringan serta memiliki fitur bawaan \textit{anti-temperance} yang mengakibatkan data menjadi \textit{immutable}. 
 
-\textit{Blockchain} memiliki fitur \textit{smart contract} untuk menjalankan logika bisnis yang terverifikasi dan disetujui oleh seluruh anggota jaringan \textit{blockchain}. Penggunaan \textit{smart contract} dapat dimanfaatkan untuk melakukan verifikasi dokumen \textit{delivery order} secara otomatis yang merujuk pada aturan-aturan ekspor impor. Dengan menggunakan \textit{smart contract} sebagai verifikator dokumen, proses permohonan \textit{delivery order} menjadi transparan dan menutup vektor serangan seperti pemalsuan dokumen dan penyuapan karena tidak melibatkan proses manual oleh manusia. Selain itu, dengan mengotomatisasi verifikasi dokumen performa dan \textit{throughput} akan meningkat karena menghilangkan \textit{bottleneck} pada proses manual.
+\textit{Blockchain} memiliki fitur \textit{smart contract} untuk menjalankan logika bisnis yang terverifikasi dan disetujui oleh seluruh anggota jaringan \textit{blockchain}. Penggunaan \textit{smart contract} dapat dimanfaatkan untuk melakukan verifikasi dokumen \textit{delivery order} secara otomatis yang merujuk pada aturan-aturan ekspor impor dengan menambahkan \textit{logic} pemeriksaan dengan aturan-aturan yang ada pada kode \textit{smart contract}. Dengan menggunakan \textit{smart contract} sebagai verifikator dokumen, proses permohonan \textit{delivery order} menjadi transparan dan menutup vektor serangan seperti pemalsuan dokumen dan penyuapan karena tidak melibatkan proses manual oleh manusia. Selain itu, dengan mengotomatisasi verifikasi dokumen performa dan \textit{throughput} akan meningkat karena menghilangkan \textit{bottleneck} pada proses manual.
 
-Penggunaan teknologi blockchain dapat mengeliminasi terjadinya pemalsuan dokumen yg melibatkan pada manajemen data, manajemen armada, perdagangan, sertifikasi, dan pelacakan pengiriman barang. Hal ini meningkatkan efisiensi transaksi dan meningkatkan kepercayaan pihak otoritas dan kelompok-kelompok yang terlibat dalam ekosistem pelabuhan. Dengan menghilangkan pembuatan, pengiriman, dan verifikasi dokumen secara manual, teknologi blockchain juga dapat mengurangi waktu tanggap pada \textit{container} \citep{Ahmad2021}.
+Penggunaan teknologi blockchain dapat mengeliminasi terjadinya pemalsuan dokumen yang melibatkan pada manajemen data, manajemen armada, perdagangan, sertifikasi, dan pelacakan pengiriman barang. Hal ini meningkatkan efisiensi transaksi dan meningkatkan kepercayaan pihak otoritas dan kelompok-kelompok yang terlibat dalam ekosistem pelabuhan. Dengan menghilangkan pembuatan, pengiriman, dan verifikasi dokumen secara manual, teknologi blockchain dapat mengurangi waktu tanggap pada kontainer perkapalan \citep{Ahmad2021}.
+
+Fabric adalah salah satu proyek Hyperledger sebagai \textit{framework} pengembangan aplikasi \textit{enterprise} dengan arsitektur modular. Fabric ditujukan sebagai sistem berbasis komponen dengan fitur-fitur yang \textit{pluggable} seperti konsensus dan layanan \textit{membership} untuk peran \textit{user} yang berbeda \cite{Dhillon2017}. Fabric juga mengatasi masalah \textit{confidentiality} dengan hanya mengeksekusi \textit{smart contract} pada \textit{peer} yang terdaftar kemudian melakukan propagasi \textit{state} ke semua \textit{peer} \cite{Androulaki2018}. 
 
 Penelitian ini berupa simulator permohonan ekspor dan impor barang (\textit{delivery order}) berbasis \textit{blockchain}. Proses permohonan dan verifikasi dokumen \textit{delivery order} secara manual digantikan dengan \textit{smart contract}. Teknologi \textit{blockchain} yang digunakan adalah Hyperledger Fabric. 
 
-Fabric adalah salah satu proyek Hyperledger sebagai \textit{framework} pengembangan aplikasi \textit{enterprise} dengan arsitektur modular. Fabric ditujukan sebagai sistem berbasis komponen dengan fitur-fitur yang \textit{pluggable} seperti konsensus dan layanan \textit{membership} untuk peran \textit{user} berbeda \cite{Dhillon2017}. Fabric juga mengatasi masalah \textit{confidentiality} dengan hanya mengeksekusi \textit{smart contract} pada \textit{trusted peers} kemudian baru melakukan propagasi \textit{state} ke semua \textit{peer} \cite{Androulaki2018}. 
+
 
 %-----------------------------------------------------------------------------%
 \section{Rumusan Masalah}
 \label{sec:masalah}
 %-----------------------------------------------------------------------------%
 
-INSW memiliki potensi vektor serangan dalam proses verifikasi dokumen \textit{delivery order}. Aspek lain yang dioptimisasi dalam penelitian ini adalah performa dan \textit{throughput} sistem untuk pemrosesan \textit{delivery order}. Pertanyaan, tujuan, dan batasan penelitian dibahas pada bagian selanjutnya.
+INSW memiliki potensi penyelewengan dalam proses verifikasi dokumen \textit{delivery order} seperti penyuapan. Dikarenakan verifikasi masih dilakukan oleh manusia, hal ini dapat menjadi celah bagi pihak berkepentingan untuk melakukan intervensi terhadap operasional INSW. Penelitian ini merupakan eksplorasi fitur Hyperledger Fabric dalam implementasi proses bisnis pembuatan \textit{delivery order}. Selanjutnya, dibahas pertanyaan, tujuan, dan batasan penelitian.
 
 
 %-----------------------------------------------------------------------------%
@@ -43,9 +45,9 @@ INSW memiliki potensi vektor serangan dalam proses verifikasi dokumen \textit{de
 Berikut adalah pertanyaan penelitian yang diangkat dari latar belakang permasalahan yang ada:
 \begin{enumerate}
 
-	\item Apa saja fitur-fitur pada Hyperledger Fabric yang dapat mengoptimalkan proses \textit{Delivery Order}?
-	\item Bagaimana cara mengimplementasi fitur-fitur utama pada proses \textit{Delivery Order} dengan menggunakan Hyperledger Fabric SDK?
-	\item Sejauh mana keunggulan sistem INSW berbasis \textit{blockchain} dengan sistem INSW yang sudah ada (tanpa berbasis \textit{blockchain})?
+	\item Apa saja fitur-fitur pada Hyperledger Fabric yang dapat menghilangkan verifikasi manual pada proses pembuatan \textit{delivery order}?
+	\item Bagaimana cara mengimplementasi fitur-fitur Hyperledger Fabric pada proses \textit{delivery order}?
+	\item Sejauh mana keunggulan sistem \textit{delivery order} berbasis \textit{blockchain} dalam aspek \textit{authentication, access control}, dan \textit{reliability}?
 \end{enumerate}
 
 %-----------------------------------------------------------------------------%
@@ -54,9 +56,9 @@ Berikut adalah pertanyaan penelitian yang diangkat dari latar belakang permasala
 %-----------------------------------------------------------------------------%
 Berikut ini adalah tujuan penelitian yang dilakukan:
 \begin{enumerate}
-	\item Mengetahui fitur-fitur Hyperledger Fabric yang dapat digunakan untuk mengoptimalkan proses \textit{Delivery Order}.
-	\item Mengimplementasi fitur \textit{Delivery Order} menggunakan Hyperledger Fabric SDK.
-	\item Mengetahui keunggulan sistem INSW berbasis \textit{blockchain} dengan sistem INSW yang sudah ada (tanpa berbasis \textit{blockchain}).
+	\item Mengetahui fitur-fitur Hyperledger Fabric yang dapat digunakan untuk menghilangkan verifikasi manual pada proses \textit{delivery order}.
+	\item Mengimplementasi fitur \textit{delivery order} menggunakan Hyperledger Fabric.
+	\item Mengetahui keunggulan sistem pembuatan \textit{delivery order} berbasis \textit{blockchain} dalam aspek \textit{authentication, access control}, dan \textit{reliability}.
 \end{enumerate}
 
 
@@ -66,9 +68,9 @@ Berikut ini adalah tujuan penelitian yang dilakukan:
 %-----------------------------------------------------------------------------%
 Berikut ini adalah asumsi yang digunakan sebagai batasan penelitian ini:
 \begin{enumerate}
-	\item Penelitian berupa implementasi \textit{smart contract} dan simulator sehingga tidak dibuat prototipe untuk diakses.
-	\item Implementasi blockchain hanya pada \textit{use case} permohonan dan rilis \textit{Delivery Order} tidak untuk keseluruhan sistem.
-	\item \textit{Smart contract} yang digunakan disetujui oleh seluruh anggota jaringan \textit{blockchain}.
+	\item Penelitian berupa implementasi \textit{smart contract} dan simulator sehingga tidak dibuat prototipe.
+	\item Implementasi blockchain hanya pada \textit{use case} permohonan \textit{delivery order}.
+	\item \textit{Smart contract} yang digunakan diasumsikan disetujui oleh seluruh anggota jaringan \textit{blockchain}.
 
 \end{enumerate}
 

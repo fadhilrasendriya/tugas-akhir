@@ -16,7 +16,7 @@ Penelitian dilakukan dengan lima tahap seperti yang terdapat pada
 
 \begin{figure}
 	\centering
-	\includegraphics[width=\textwidth]{assets/pics/metode}
+	\includegraphics[width=\textwidth]{assets/pics/metode.png}
 	\caption{Langkah penelitian.}
 	\label{fig:metode}
 \end{figure}
@@ -35,12 +35,12 @@ Terakhir, tahapan kelima pada penelitian ini ditarik sebuah kesimpulan dari hasi
 \section{Metrik Evaluasi}
 \label{sec:metrikevaluasi}
 
-Pada penelitian ini, dilakukan uji dan evaluasi \textit{smart contract} menggunakan simulator yang dibuat. Skenario simulasi didasarkan pada permasalahan-permasalahan pada sistem INSW saat ini. Metode evaluasi berupa analisis \textit{log} aplikasi. Evaluasi pertama berupa analisis keamanan berdasarkan aspek fungsionalitas, \textit{authentication}, \textit{access control}, \textit{failure rate}, dan \textit{availability}.
+Pada penelitian ini, dilakukan uji dan evaluasi \textit{smart contract} menggunakan simulator yang dibuat. Skenario simulasi didasarkan pada permasalahan-permasalahan pada sistem INSW saat ini. Metode evaluasi berupa analisis \textit{log} aplikasi. Evaluasi pertama berupa analisis keamanan berdasarkan aspek fungsionalitas, \textit{authentication}, \textit{access control}, dan \textit{reliability}.
 
-Evaluasi fungsionalitas berkaitan dengan pengujian fitur \textit{delivery order} dalam sistem berbasis \textit{blockchain} dengan Hyperledger Fabric. Evaluasi dilakukan dengan melakukan pemanggilan pada \textit{smart contract} melalui simulator. Hasil evaluasi berupa analisis deskriptif dari log yang diambil dari log \textit{peer} dan log \textit{smart contract}. Aspek ini bertujuan untuk mengetahui apakah fitur \textit{delivery order} dapat diimplementasikan menggunakan Hyperledger Fabric.
+Evaluasi fungsionalitas berkaitan dengan pengujian fitur \textit{delivery order} dalam sistem berbasis \textit{blockchain} dengan Hyperledger Fabric. Evaluasi dilakukan dengan melakukan pemanggilan pada \textit{smart contract} yang dirancang melalui simulator. Hasil evaluasi berupa analisis deskriptif dari log yang diambil dari log \textit{peer} dan log \textit{smart contract}. Aspek ini bertujuan untuk mengetahui apakah fitur \textit{delivery order} dapat diimplementasikan menggunakan Hyperledger Fabric.
 
 Evaluasi selanjutnya adalah aspek \textit{authentication}. Pengujian dilakukan dengan melakukan pengaksesan sistem \textit{blockchain} menggunakan \textit{credential} atau identitas yang tidak terdaftar atau tidak diberikan \textit{permission} untuk mengakses \textit{blockchain}. Aspek ini bertujuan untuk mengetahui jika hanya pihak yang terdaftar atau memiliki izin yang dapat mengakses \textit{blockchain}.
 
 Aspek ketiga yang dievaluasi adalah \textit{access control}. Pengujian ini ditujukan untuk pembatasan operasi tertentu pada \textit{smart contract} untuk dapat dilakukan hanya oleh pihak yang terotorisasi. Pengujian dilakukan dengan melakukan operasi terbatas dengan identitas yang tidak berwenang melakukan operasi tersebut.
 
-Selanjutnya untuk melakukan evaluasi \textit{failure rate} dan \textit{availability}, sistem diuji dengan melakukan simulasi pembuatan \textit{delivery order} dalam waktu yang bersamaan dengan jumlah yang inkremental. Kemudian dilakukan analisis terhadap perubahan-perubahan yang terjadi saat jumlah \textit{request} ditingkatkan. Pengujian ini dilakukan untuk mengukur kapasitas sistem saat beban tinggi.
+Aspek evaluasi yang terakhir adalah \textit{reliability}. Sistem diuji dengan melakukan simulasi pembuatan \textit{delivery order} dalam waktu yang bersamaan dengan jumlah yang inkremental. Kemudian dilakukan analisis terhadap perubahan-perubahan yang terjadi saat jumlah \textit{request} ditingkatkan. Pengujian ini dilakukan untuk mengukur kapasitas sistem saat beban tinggi.

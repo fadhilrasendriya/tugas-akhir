@@ -30,6 +30,11 @@
 % Daftar istilah yang mungkin perlu ditandai
 \input{config/istilah}
 
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
 % Awal bagian penulisan laporan
 \begin{document}
 %
@@ -87,7 +92,7 @@
 	{\include{src/00-frontMatter/pengesahanSidang}}
 	\forceclearchapter
 	% Lembar Pengesahan dari PDF lain (misal: generated oleh SISIDANG [Fasilkom])
-	%\putpdf{assets/pdfs/pengesahanSidang.pdf}
+	% \putpdf{assets/pdfs/pengesahan.pdf}
 }
 
 
@@ -137,6 +142,8 @@
 \setstretch{1.4}
 \clearpage
 
+
+
 %
 % Daftar Kode Program
 % Comment to disable.
@@ -144,9 +151,11 @@
 \phantomsection %hack to make them clickable
 \addcontentsline{toc}{chapter}{\lstlistlistingname}
 \singlespacing
+\enableboldchapterintoc
 \listoflistings
 \setstretch{1.4}
 \clearpage
+
 
 %
 % Daftar Isi yang Didefinisikan Sendiri (Custom)
@@ -175,14 +184,14 @@
 % Daftar Lampiran
 % Comment to disable.
 %
-\phantomsection %hack to make them clickable
-\addcontentsline{toc}{chapter}{\listofappendixname}
-\singlespacing
-\listofappendix
-\setstretch{1.4}
+%\phantomsection %hack to make them clickable
+%\addcontentsline{toc}{chapter}{\listofappendixname}
+%\singlespacing
+%\listofappendix
+%\setstretch{1.4}
 
 % Table of content normal lagi hurufnya
-\enableboldchapterintoc
+%\enableboldchapterintoc
 
 \clearpage
 
@@ -227,14 +236,14 @@
 %
 % Lampiran
 %
-\begin{appendix}
-	\newcounter{pagetemp}
-	\setcounter{pagetemp}{\thepage}
-	\include{_internals/markLampiran}
-	\clearchapter
-	\setcounter{page}{\thepagetemp}
-	\stepcounter{page}
-	\include{src/99-backMatter/lampiran}
-\end{appendix}
+%\begin{appendix}
+%	\newcounter{pagetemp}
+%	\setcounter{pagetemp}{\thepage}
+%	\include{_internals/markLampiran}
+%	\clearchapter
+%	\setcounter{page}{\thepagetemp}
+%	\stepcounter{page}
+%	\include{src/99-backMatter/lampiran}
+%\end{appendix}
 
 \end{document}
